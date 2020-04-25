@@ -1,0 +1,5 @@
+{
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.pythonPath" : "C:\\Users\\l.stylianou\\Development\\udemy\\The Complete Guide to Django REST framework with VueJs\\03-DRF-LEVEL-ONE\\venv\\Scripts\\python.exe",
+    "python.venvPath": "C:\\Users\\l.stylianou\\Development\\udemy\\The Complete Guide to Django REST framework with VueJs\\03-DRF-LEVEL-ONE\\venv"
+}
