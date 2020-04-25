@@ -1,5 +1,5 @@
 from django.db import models
-
+from django_countries.fields import CountryField
 # Create your models here.
 
 class JobOffer(models.Model):
@@ -9,7 +9,8 @@ class JobOffer(models.Model):
     job_description = models.TextField()
     salary = models.DecimalField(max_digits=10, decimal_places=2)
     city = models.CharField(max_length=60,blank=True)
-    country = models.CharField(max_length=60)
+    # country = models.CharField(max_length=60)
+    country = CountryField(blank_label='(Select country)')
     created_at = models.DateTimeField(auto_now_add=True)
     available = models.BooleanField(default=True)
 
