@@ -8,6 +8,7 @@ class QuoteListCreateAPIView(ListCreateAPIView):
     queryset = Quote.objects.all().order_by("-id")
     serializer_class = QuoteSerializer
     permission_classes = [IsAdminOrReadOnly]
+    
     pagination_class = QuotePagination
 
 
