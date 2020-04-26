@@ -5,11 +5,14 @@ from ebooks.api.serializers import EbookSerializer, ReviewSerializer
 from rest_framework import permissions
 from ebooks.api.permissions import IsAdminUserOrReadOnly, IsReviewAuthorOrReadOnly
 from rest_framework.exceptions import ValidationError
+from ebooks.api.pagination import SmallSetPagination
 
 class EbookListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Ebook.objects.all()
+    #get query set in reverse order baased on id
+    queryset = Ebook.objects.all().order_by('-id')
     serializer_class = EbookSerializer
     permission_classes = [IsAdminUserOrReadOnly]
+    pagination_class = SmallSetPagination
 
 
 class EbookDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
