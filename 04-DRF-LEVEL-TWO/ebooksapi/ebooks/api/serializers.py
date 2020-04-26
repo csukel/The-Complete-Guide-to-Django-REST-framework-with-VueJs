@@ -4,7 +4,7 @@ from django.db.models import Avg
 
 class ReviewSerializer(serializers.ModelSerializer):
     # ebook = serializers.HyperlinkedRelatedField(view_name="ebook-detail",read_only=True)
-    
+    review_author = serializers.StringRelatedField(read_only=True)
     class Meta:
         model = Review
         # fields = "__all__"
