@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Forms and User Input</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div class="row justify-content-center mt-3">
+            <h1 v-text="lesson"></h1>
+        </div>
+        <!-- <div class="row justify-content-center mt-3">
+            <div class="col-5">
+                <p>Write a message</p>
+                <textarea v-model="text" name="" class="form-control" 
+                    placeholder="Write something!" id="" 
+                    cols="60" rows="5"></textarea>
+                <input type="checkbox" id="checkbox" v-model="checked" >
+                <label for="checkbox">&nbsp;&nbsp;Value: {{ checked }}</label>
+            </div>
+            <div class="col-5">
+                <p>Message</p>
+                <p>{{text}}</p>
+            </div>
+
+        </div> -->
+
+        <!-- <div class="row justify-content-center mt-3">
+            <select name="" id="" v-model="city">
+                <option >Rome</option>
+                <option >New York</option>
+                <option >Shenzen</option>
+                <option >London</option>
+                <option >Mumbai</option>
+            </select>
+            <span>&nbsp;&nbsp;City: {{city}}</span>
+        </div> -->
+        <div class="row justify-content-center mt-3">
+            <p v-if="errors" class="mt-2" style="text-align: center; color: red;">Errors: {{ errors }}</p>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-5">
+                <form>
+                    <div class="form-group">
+                        <label for="commentText">Publish a comment</label>
+                        <textarea id="commentText" v-model="comment" class="form-control" cols="80" rows="8"></textarea>
+                    </div>
+                    <button class="btn btn-sm btn-primary" type="submit" @click="onSubmit">
+                        Publish
+                    </button>
+                </form>
+            </div>
+            <div class="col-5">
+                <label for="commentsList">Comments</label>
+                <ul id="commentsList">
+                    <li v-for="comm in comments">{{comm}}</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
