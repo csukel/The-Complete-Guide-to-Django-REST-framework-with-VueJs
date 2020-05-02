@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Hello Vue</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{message}}</h1>
+        <!-- <h1 v-text="message"></h1> -->
+        <h2>{{ value }}</h2>
+        <h2>{{ value*5 }}</h2>
+        <h2>{{ "Hello" + " Vue!" }}</h2>
+        <h2>{{ message + " and Vue!" }}</h2>
+        <h2>{{ Math.random() }}</h2>
+        <img v-bind:src="imgSrc" alt="" width="150px" height="150px">
+        <!-- <a v-bind:href="link">Google</a> -->
+        <a :href="link">Google</a>
+        <button v-on:click="onSayHello">Click me</button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js" ></script>
+</body>
+</html>

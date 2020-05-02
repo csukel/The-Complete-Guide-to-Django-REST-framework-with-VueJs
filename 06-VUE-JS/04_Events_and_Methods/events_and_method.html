@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events and Methods</title>
+    <style>
+        .box {
+            background-color: green;
+            width:  300px ;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <h1 v-text="lesson"></h1>
+        <h2>Counter: {{ counter }}</h2>
+        <button v-on:click="onIncrement">Increment ++</button>
+        <!-- @ is the same as v-on: -->
+        <button @click="onDecrement">Decrement --</button>
+        <br><br>
+        <div class="box"
+            @mouseover="overTheBox">
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js" ></script>
+</body>
+</html>
