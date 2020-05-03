@@ -34,6 +34,7 @@ urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')),
 
     path('api/',include('users.api.urls')),
+    path('api/',include('questions.api.urls')),
 
     #login via browasable api
     path('api-auth/',include('rest_framework.urls')),

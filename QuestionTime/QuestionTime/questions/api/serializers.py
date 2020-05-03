@@ -28,7 +28,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     answers_count = serializers.SerializerMethodField()
     user_has_answered = serializers.SerializerMethodField()
 
-    class Method:
+    class Meta:
         model = Question
         exclude = ["updated_at"]
 
