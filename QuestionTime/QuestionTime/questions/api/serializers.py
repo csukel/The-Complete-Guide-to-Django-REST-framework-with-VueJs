@@ -2,6 +2,7 @@ from rest_framework import serializers
 from questions.models import Question, Answer
 
 class AnswerSerializer(serializers.ModelSerializer):
+    
     author = serializers.StringRelatedField(read_only=True)
     created_at = serializers.SerializerMethodField()
     likes_count = serializers.SerializerMethodField()

@@ -1,6 +1,7 @@
 {
     "python.venvPath": "C:\\Users\\l.stylianou\\Development\\udemy\\The Complete Guide to Django REST framework with VueJs\\QuestionTime\\venv",
     "python.pythonPath": "C:\\Users\\l.stylianou\\Development\\udemy\\The Complete Guide to Django REST framework with VueJs\\QuestionTime\\venv\\Scripts\\python.exe",
-    "python.terminal.activateEnvInCurrentTerminal": true
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "git.ignoreLimitWarning": true
 
 }
