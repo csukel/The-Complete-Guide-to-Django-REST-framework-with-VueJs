@@ -20,6 +20,12 @@ module.exports = {
         config.resolve.alias
             .set('__STATIC__', 'static')
 
+        config.plugin('html')
+            .tap(args=>{
+                args[0].template = '../templates/index.html'
+                return args
+            })
+
         config.devServer
             // the first 3 lines of the following code have been added to the configuration
             .public('http://127.0.0.1:' +port)    
