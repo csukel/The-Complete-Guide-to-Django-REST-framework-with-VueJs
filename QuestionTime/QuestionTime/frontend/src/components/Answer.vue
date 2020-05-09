@@ -6,7 +6,9 @@
                     <p class="text-muted">
                         <strong>{{ answer.author }} &#8901; {{ answer.created_at }}</strong>
                     </p>
-                    <p v-show="!edit">{{answer.body}}</p>
+                    <div v-show="!edit">
+                        <p>{{answer.body}}</p>
+                    </div>
                     <textarea
                         v-show="isAuthor && edit"
                         class="form-control"
@@ -15,9 +17,9 @@
                     ></textarea>
                     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
                 </div>
-                <div class="col-2 button-container">
+                <div v-if="isAuthor" class="col-2 button-container">
                     <div class="row justify-content-around">
-                        <div v-show="isAuthor">
+                        <div>
                             <button
                                 v-show="!edit"
                                 class="btn btn-outline-info"
@@ -43,7 +45,7 @@
                         <div>
                             <button
                                 class="btn btn-outline-danger"
-                                v-show="isAuthor && !edit"
+                                v-show="!edit"
                                 @click="deleteAnswer"
                             >
                                 <i class="fa fa-trash"></i>
@@ -52,11 +54,21 @@
                         </div>
                     </div>
                 </div>
+                <div v-else class="col-2">
+                    <div class="row">
+                        <button
+                            :class="{ 'btn' : answer !==null , 'btn-outline-info': !answer.user_has_voted, 'btn-info': answer.user_has_voted }"
+                            @click="toggleLike"
+                        >
+                            <i class="fa fa-thumbs-up"></i>
+                            ({{answer.likes_count}})
+                        </button>
+
+                    </div>
+                </div>
             </div>
             <hr />
         </div>
-
- 
     </div>
 </template>
 
@@ -68,12 +80,20 @@ export default {
         answer: {
             type: Object,
             required: true
+        },
+        requestUser: {
+            type: String,
+            required: true
+        }
+    },
+    computed: {
+        isAuthor() {
+            return this.requestUser == this.answer.author;
         }
     },
     data() {
         return {
             showModal: true,
-            isAuthor: false,
             edit: false,
             originalValue: null,
             error: null
@@ -81,18 +101,10 @@ export default {
     },
     created() {
         this.originalValue = this.answer.body;
-        let endpoint = "/api/user/";
-        apiService(endpoint).then(data => {
-            this.isAuthor = data.username === this.answer.author;
-        });
     },
     methods: {
         deleteAnswer() {
-            let endpoint = `/api/answers/${this.answer.id}/`;
-            let method = "DELETE";
-            apiService(endpoint, method).then(() =>
-                this.$emit("delete", this.answer)
-            );
+            this.$emit("delete", this.answer);
         },
         onUpdateAnswer() {
             let endpoint = `/api/answers/${this.answer.id}/`;
@@ -117,6 +129,19 @@ export default {
             this.edit = false;
             this.answer.body = this.originalValue;
             this.error = false;
+        },
+        async toggleLike() {
+            let endpoint = `/api/answers/${this.answer.id}/like/`;
+            let method = this.answer.user_has_voted ? "DELETE" : "POST";
+            try {
+                await apiService(endpoint, method);
+                this.answer.user_has_voted = !this.answer.user_has_voted;
+                this.answer.likes_count = this.answer.user_has_voted
+                    ? this.answer.likes_count + 1
+                    : this.answer.likes_count -1 ;
+            } catch (err) {
+                console.log(err);
+            }
         }
     }
 };
@@ -132,4 +157,9 @@ export default {
     flex-flow: column;
     justify-content: center;
 }
+
+.likeIcon {
+    font-size: 1.5rem;
+}
+
 </style>
